@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Lead Gen AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden p-6">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold text-gray-800">LinkedIn Lead Gen AI</h1>
+                <p class="text-gray-600 mt-2">Automate your high-quality lead generation with AI-powered personalization</p>
+            </div>
+
+            <div class="space-y-6">
+                <!-- API Key Input -->
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <label for="api_key" class="block text-sm font-medium text-gray-700 mb-1">OpenAI API Key</label>
+                    <input type="password" id="api_key" name="api_key" 
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" 
+                           placeholder="sk-...">
+                    <p class="mt-1 text-xs text-gray-500">We don't store your API key. It's used only for your session.</p>
+                </div>
+
+                <!-- Target Profile Input -->
+                <div>
+                    <label for="ideal_customer" class="block text-sm font-medium text-gray-700 mb-1">Describe Your Ideal Customer</label>
+                    <textarea id="ideal_customer" name="ideal_customer" rows="3"
+                              class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+                              placeholder="e.g. 'HR managers at tech companies with 500+ employees in the US'"></textarea>
+                </div>
+
+                <!-- Customization Options -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="tone" class="block text-sm font-medium text-gray-700 mb-1">Message Tone</label>
+                        <select id="tone" name="tone" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+                            <option value="professional">Professional</option>
+                            <option value="friendly">Friendly</option>
+                            <option value="direct">Direct</option>
+                            <option value="casual">Casual</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="length" class="block text-sm font-medium text-gray-700 mb-1">Message Length</label>
+                        <select id="length" name="length" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+                            <option value="short">Short (1-2 sentences)</option>
+                            <option value="medium" selected>Medium (3-4 sentences)</option>
+                            <option value="long">Long (5+ sentences)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Generate Button -->
+                <button hx-post="/generate" hx-include="#api_key, #ideal_customer, #tone, #length" hx-target="#results"
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md transition duration-200">
+                    Generate Lead Strategy
+                </button>
+
+                <!-- Results Section -->
+                <div id="results" class="space-y-6 mt-6"></div>
+            </div>
+
+            <!-- Upsell Banner -->
+            <div class="mt-8 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200">
+                <h3 class="font-semibold text-blue-800">Want More Power?</h3>
+                <p class="text-sm text-blue-600 mt-1">Upgrade to Pro for CRM integrations, unlimited generations, and advanced analytics.</p>
+                <button class="mt-2 px-4 py-2 bg-white border border-blue-300 text-blue-600 rounded-md text-sm font-medium hover:bg-blue-50">
+                    Learn More
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
